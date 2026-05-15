@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Study Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #f0f2f5; }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-blue-800 text-white p-4 shadow-lg">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="font-bold text-xl uppercase tracking-wider">Admin Dashboard</h1>
+            <a href="index.html" class="text-sm bg-blue-700 px-3 py-1 rounded hover:bg-blue-600">View Site</a>
+        </div>
+    </nav>
+
+    <div class="max-w-2xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Add New Content</h2>
+        
+        <div class="space-y-5">
+            <div>
+                <label class="block text-sm font-semibold text-gray-600 mb-1">Select Class</label>
+                <select id="classSelect" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                    <option value="10th">10th Standard</option>
+                    <option value="11th">11th Standard</option>
+                    <option value="12th">12th Standard</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-600 mb-1">Subject Name (e.g., physics, maths)</label>
+                <input type="text" id="subjectName" placeholder="Enter subject name in lowercase" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-600 mb-1">Chapter/Content Title</label>
+                <input type="text" id="contentTitle" placeholder="e.g., Unit 1 - Introduction" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-600 mb-1">Type</label>
+                <select id="contentType" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                    <option value="Notes">Notes</option>
+                    <option value="Important Questions">Important Questions</option>
+                    <option value="Quiz">Quiz Link</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-600 mb-1">File Link (Drive or PDF URL)</label>
+                <input type="text" id="contentLink" placeholder="Paste the link here" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+
+            <button id="submitBtn" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition transform active:scale-95 shadow-md">
+                <i class="fa-solid fa-cloud-arrow-up mr-2"></i> ADD DATA TO WEBSITE
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAn7E7olxRpT_dBvQCL2K5nx-slpuTb1e8",
+            authDomain: "study-327d0.firebaseapp.com",
+            projectId: "study-327d0",
+            storageBucket: "study-327d0.firebasestorage.app",
+            messagingSenderId: "718476771682",
+            appId: "1:718476771682:web:154c4253a4a68cc2aeec3b",
+            measurementId: "G-26V9GF5XP7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const btn = document.getElementById('submitBtn');
+
+        btn.onclick = async () => {
+            const classId = document.getElementById('classSelect').value;
+            const subName = document.getElementById('subjectName').value.toLowerCase().trim();
+            const title = document.getElementById('contentTitle').value;
+            const type = document.getElementById('contentType').value;
+            const link = document.getElementById('contentLink').value;
+
+            if(!subName || !title || !link) {
+                alert("Ellam fill pannunga boss!");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Adding...";
+
+            try {
+                // 1. First, make sure the subject document exists
+                const subjectRef = doc(db, `classes/${classId}/subjects/${subName}`);
+                await setDoc(subjectRef, {
+                    subjectName: subName.toUpperCase()
+                }, { merge: true });
+
+                // 2. Add the content inside that subject
+                await addDoc(collection(db, `classes/${classId}/subjects/${subName}/content`), {
+                    title: title,
+                    type: type,
+                    link: link,
+                    timestamp: new Date()
+                });
+
+                alert("Successfully added to " + classId + " " + subName);
+                
+                // Clear inputs
+                document.getElementById('contentTitle').value = "";
+                document.getElementById('contentLink').value = "";
+
+            } catch (e) {
+                console.error("Error: ", e);
+                alert("Error: " + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "ADD DATA TO WEBSITE";
+            }
+        };
+    </script>
+</body>
+</html>
+
