@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Hub - Education Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        .hero-gradient { background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%); }
+        .card-shadow { transition: all 0.3s ease; }
+        .card-shadow:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-blue-700 font-bold text-2xl tracking-tighter">STUDY HUB</span>
+                </div>
+                <div class="hidden md:flex space-x-6 text-gray-600 font-medium text-sm">
+                    <a href="#" class="text-blue-600 border-b-2 border-blue-600">Home</a>
+                    <a href="#classes" class="hover:text-blue-600">Classes</a>
+                    <a href="#" class="hover:text-blue-600">Subjects</a>
+                    <a href="#" class="hover:text-blue-600">Live Tuition</a>
+                    <a href="#" class="hover:text-blue-600">Quiz</a>
+                    <a href="#" class="hover:text-blue-600">Notes</a>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="text-sm font-semibold bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-gradient py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 space-y-6">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">Your Success <br><span class="text-blue-600">Starts Here</span></h1>
+                <p class="text-gray-600 text-lg">Important Questions, Notes, Live Classes, Quizzes & More – All in One Place!</p>
+                <div class="flex space-x-4">
+                    <button onclick="document.getElementById('classes').scrollIntoView()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 shadow-lg transition">Start Learning</button>
+                    <button class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50">Explore Classes</button>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+                <div class="w-full max-w-md bg-gray-100 h-64 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-300">
+                    <i class="fa-regular fa-image text-gray-300 text-7xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-6 -mt-12">
+        <div class="bg-white p-6 rounded-xl shadow-md border flex items-center space-x-4">
+            <div class="bg-blue-100 p-3 rounded-lg text-blue-600 text-2xl"><i class="fa-solid fa-book"></i></div>
+            <div>
+                <h3 class="font-bold">Important Questions</h3>
+                <p class="text-xs text-gray-500">Chapter wise questions for all subjects</p>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md border flex items-center space-x-4">
+            <div class="bg-blue-100 p-3 rounded-lg text-blue-600 text-2xl"><i class="fa-solid fa-play"></i></div>
+            <div>
+                <h3 class="font-bold">Live Tuition Classes</h3>
+                <p class="text-xs text-gray-500">Join live classes with expert teachers</p>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md border flex items-center space-x-4">
+            <div class="bg-blue-100 p-3 rounded-lg text-blue-600 text-2xl"><i class="fa-solid fa-list-check"></i></div>
+            <div>
+                <h3 class="font-bold">Quizzes & Tests</h3>
+                <p class="text-xs text-gray-500">Practice, test and improve your score</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="classes" class="max-w-7xl mx-auto px-4 py-16 text-center">
+        <h2 class="text-2xl font-bold text-gray-800 mb-8 uppercase tracking-wide">Choose Your Class</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl border-t-8 border-green-400 shadow-sm card-shadow">
+                <i class="fa-solid fa-graduation-cap text-green-500 text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-800">10th Standard</h3>
+                <p class="text-gray-500 text-sm mt-2 mb-6">All Subjects</p>
+                <button onclick="goToClass('10th')" class="bg-green-500 text-white px-10 py-2 rounded-lg font-bold hover:bg-green-600 transition">Explore</button>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border-t-8 border-blue-400 shadow-sm card-shadow">
+                <i class="fa-solid fa-graduation-cap text-blue-500 text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-800">11th Standard</h3>
+                <p class="text-gray-500 text-sm mt-2 mb-6">Science | Commerce | Maths</p>
+                <button onclick="goToClass('11th')" class="bg-blue-500 text-white px-10 py-2 rounded-lg font-bold hover:bg-blue-600 transition">Explore</button>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl border-t-8 border-pink-400 shadow-sm card-shadow">
+                <i class="fa-solid fa-graduation-cap text-pink-500 text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-800">12th Standard</h3>
+                <p class="text-gray-500 text-sm mt-2 mb-6">Science | Commerce | Maths</p>
+                <button onclick="goToClass('12th')" class="bg-pink-500 text-white px-10 py-2 rounded-lg font-bold hover:bg-pink-600 transition">Explore</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 uppercase">Popular Subjects</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                <div class="p-4 border rounded-xl hover:shadow-md transition cursor-pointer">
+                    <i class="fa-solid fa-calculator text-blue-600 text-2xl mb-2"></i>
+                    <p class="text-xs font-bold">Maths</p>
+                </div>
+                <div class="p-4 border rounded-xl hover:shadow-md transition cursor-pointer">
+                    <i class="fa-solid fa-microscope text-blue-600 text-2xl mb-2"></i>
+                    <p class="text-xs font-bold">Science</p>
+                </div>
+                </div>
+            <button class="mt-10 border-2 border-blue-600 text-blue-600 px-8 py-2 rounded-lg font-bold hover:bg-blue-600 hover:text-white transition">View All Subjects</button>
+        </div>
+    </section>
+
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <h2 class="font-bold text-xl mb-4 italic">STUDY HUB</h2>
+                <p class="text-sm text-blue-200 leading-relaxed">The best learning platform for 10th, 11th & 12th students. Learn, Practice, Succeed.</p>
+                <div class="flex space-x-4 mt-6">
+                    <i class="fa-brands fa-facebook-f cursor-pointer hover:text-blue-400"></i>
+                    <i class="fa-brands fa-instagram cursor-pointer hover:text-pink-400"></i>
+                    <i class="fa-brands fa-youtube cursor-pointer hover:text-red-400"></i>
+                    <i class="fa-brands fa-telegram cursor-pointer hover:text-blue-300"></i>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">QUICK LINKS</h3>
+                <ul class="text-sm space-y-2 text-blue-200">
+                    <li class="hover:text-white cursor-pointer">Home</li>
+                    <li class="hover:text-white cursor-pointer">Classes</li>
+                    <li class="hover:text-white cursor-pointer">Quiz</li>
+                    <li class="hover:text-white cursor-pointer">Notes</li>
+                    <li class="hover:text-white cursor-pointer">Live Tuition</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">RESOURCES</h3>
+                <ul class="text-sm space-y-2 text-blue-200">
+                    <li class="hover:text-white cursor-pointer">Important Questions</li>
+                    <li class="hover:text-white cursor-pointer">Model Papers</li>
+                    <li class="hover:text-white cursor-pointer">Study Tips</li>
+                    <li class="hover:text-white cursor-pointer">Books</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">NEWSLETTER</h3>
+                <p class="text-xs text-blue-200 mb-4">Subscribe for latest updates and important questions.</p>
+                <div class="flex flex-col space-y-2">
+                    <input type="email" placeholder="Enter your email" class="p-2 rounded bg-white text-gray-800 outline-none">
+                    <button class="bg-blue-600 p-2 rounded font-bold hover:bg-blue-500 transition">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-12 border-t border-blue-800 pt-6 text-sm text-blue-300">
+            © 2026 Study Hub. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+        // Your Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAn7E7olxRpT_dBvQCL2K5nx-slpuTb1e8",
+            authDomain: "study-327d0.firebaseapp.com",
+            projectId: "study-327d0",
+            storageBucket: "study-327d0.firebasestorage.app",
+            messagingSenderId: "718476771682",
+            appId: "1:718476771682:web:154c4253a4a68cc2aeec3b",
+            measurementId: "G-26V9GF5XP7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Redirect function
+        window.goToClass = (classId) => {
+            // Ippo idhu class.html ku id vechu kootitu pogum
+            window.location.href = `class.html?id=${classId}`;
+        };
+    </script>
+</body>
+</html>
+
